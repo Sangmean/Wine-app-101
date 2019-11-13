@@ -3,9 +3,6 @@ import { Regions } from './components/Regions';
 import { WineList } from './components/WineList';
 import { Wine } from './components/Wine';
 import * as WinesService from './module/WinesService';
-// import logo from './logo.svg';
-// import { Loader } from './components';
-// import './App.css';
 
 export class WineApp extends Component {
   state = {
@@ -15,9 +12,10 @@ export class WineApp extends Component {
     selectedWine: null
   };
 
-  //준비하는 과정, 처음에 정보를 보여주는 초석?
+  //need to be more clear on componentDidMount!
   async componentDidMount() {
-    // load regions and maybe wines from the first region
+    // load regions and maybe wines from the first region (From React101 Tutorial)
+    // setState regions and selectRegion
     await WinesService.fetchRegions().then(regions => {
       this.setState({
         regions: regions,
@@ -32,36 +30,25 @@ export class WineApp extends Component {
           wines: wines,
           selectedWine: wines[0]
         },
+        // To check whether I got the fetch data!
         () => console.log('WineApp::fetch default selected region ', wines[0])
       );
     });
   }
 
   onSelectRegion = region => {
-    // TODO : maybe we need to reload wines here ???
-    // what to put here??
-    // console.log('----> Ray region:', region);
-    // this.setState({
-    //   selectedRegion: region
-    // });
-
     WinesService.fetchWinesFrom(region).then(wines => {
-      // console.log('-----> Ray Result Wines:', wines);
       this.setState({
         selectedRegion: region,
-        wines: wines
+        wines: wines,
+        selectedWine: wines[0]
       });
     });
   };
 
-  onSelectWine = wine => {
-    // console.log('**********', wine);
-    // this.setState({
-    //   selectedWine: wine
-    // });
-    WinesService.fetchWine(wine.id).then(wine => {
+  onSelectWine = id => {
+    WinesService.fetchWine(id).then(wine => {
       console.log('selected wine before state:: ', wine);
-      // () => console.log('selected wine in state???', wine),
       this.setState({
         selectedWine: wine
       });

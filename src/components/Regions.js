@@ -22,7 +22,7 @@ export class Regions extends Component {
           {this.props.regions.map(region => (
             <a
               href="#!"
-              className={['collection-item', region === this.props.region ? isActive : ' ,'].join(' ')}
+              className={['collection-item', region === this.props.region ? isActive : ', '].join(' ')}
               key={region}
               onClick={e => {
                 e.preventDefault();

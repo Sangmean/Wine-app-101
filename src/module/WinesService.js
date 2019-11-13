@@ -8,7 +8,6 @@ export function fetchWinesFrom(region) {
 
 export function fetchWine(id) {
   return fetch(`https://wines-api.herokuapp.com/api/wines/${id}`).then(r => r.json());
-  // .then(r => console.log('aaaaaaaaaa  ', r));
 }
 
 export function likeWine(id) {

@@ -8,13 +8,11 @@ export class WineList extends Component {
     wine: PropTypes.object // the selected wine
   };
 
-  onSelectWine = wine => {
-    this.props.onSelectWine(wine);
+  onSelectWine = id => {
+    this.props.onSelectWine(id);
   };
 
   render() {
-    // console.log('-----> check wines', this.props.wines);
-    // console.log('*************************************************');
     const isActive = 'collection-item active';
 
     return (
@@ -24,11 +22,11 @@ export class WineList extends Component {
           {this.props.wines.map(wine => (
             <a
               href="#!"
-              className={['collection-item ', wine === this.props.wine ? isActive : ' , '].join(' ')}
+              className={['collection-item ', wine.id === this.props.wine.id ? isActive : ', '].join(' ')}
               key={wine.id}
               onClick={e => {
                 e.preventDefault();
-                this.onSelectWine(wine);
+                this.onSelectWine(wine.id);
               }}
             >
               {wine.name}

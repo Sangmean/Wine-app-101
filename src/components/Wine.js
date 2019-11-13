@@ -8,6 +8,7 @@ export class Wine extends Component {
 
   render() {
     console.log('******* ', this.props.wine);
+    // MUST NULL CHECK
     if (this.props.wine) {
       return (
         <div className="col s12 m12 l6">
